@@ -1,0 +1,575 @@
+@import "libs";
+@import "fonts";
+@import "_mixins/mixins";
+
+//// переменные
+$color: #fff;
+$blue-color: #42A9ED;
+$grey-color: #C3C3C3;
+$st-font: 400;
+$bold-font: 800;
+$font-size: 1.3rem;
+$line-height: 1.2;
+$font-family-1: Lato, sans-serif;
+$font-family-2: Raleway, sans-serif;
+
+//// главные и общие стили
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+html {
+  font-size: 10px;
+}
+input::placeholder {
+  color: #000;
+}
+body {
+  color: $color;
+  background-color: #fff;
+  font-weight: $st-font;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-family: $font-family-1, Arial, sans-serif;
+  position: relative;
+}
+.container {
+  width: 117rem;
+  margin: 0 auto;
+}
+.site-wrapper {
+  padding: 0;
+  margin: 0;
+  min-width: 320px;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  min-height: 100%;
+}
+.blue-w800 {
+  font-family: $font-family-2;
+  font-weight: $bold-font;
+  color: $blue-color;
+}
+.textBlue {
+  color: $blue-color;
+  text-transform: uppercase;
+}
+//// header
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(16,16,29,0.9);
+  height: 10rem;
+  transition: height .2s;
+  z-index: 9;
+  &_fixed {
+    position: fixed;
+    height: 5rem;
+    border-bottom: 0.1rem solid rgba(255,255,255,.4);
+  }
+  &_fixed .top-menu {
+    height: 5rem;
+  }
+// меню хидера
+}
+.top-menu {
+  height: 10rem;
+  max-width: 117rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: height .2s;
+}
+// логотип
+.logo {
+  font-size: 2.8rem;
+  &__link {
+    color: #fff;
+    text-transform: uppercase;
+    font-family: $font-family-2;
+    font-weight: $bold-font;
+  }
+// меню
+}
+.menu {
+  display: flex;
+  height: 100%;
+  &__item {
+    transition: height .2s;
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 3rem;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    color: #fff;
+    transition: color .2s;
+    &:hover {
+      color: $blue-color;
+    }
+  }
+  &__link_active {
+    color: $blue-color;
+  }
+  &__link_last {
+    padding: 0 0 0 3rem;
+  }
+// тогглер меню моб. версии
+}
+.toggler {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  display: none;
+  &__line {
+    display: block;
+    position: relative;
+    height: 0.4rem;
+    width: 2.6rem;
+    background: #fff;
+    margin: 0.2rem;
+    transition: .2s;
+  }
+// анимация тогглера
+}
+.toggler.toggler_active .toggler__line:nth-child(1) {
+  transform: rotate(-45deg);
+  top: 0.4rem;
+}
+.toggler.toggler_active .toggler__line:nth-child(2) {
+  display: none;
+}
+.toggler.toggler_active .toggler__line:nth-child(3) {
+  transform: rotate(45deg);
+  bottom: 0.4rem;
+}
+//// hero-секция
+.hero {
+  height: 85rem;
+  background: url('../img/background.webp') no-repeat center / cover;
+  display: flex;
+  color: #000;
+}
+.welcome {
+  width: 117rem;
+  margin: auto;
+  &__title {
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 5.8rem;
+    font-size: 4.8rem;
+  }
+  &__text {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 8rem;
+  }
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    height: 4.4rem;
+    width: 40rem;
+    margin-top: 8rem;
+  }
+  &__links_button {
+    width: 18.2rem;
+  }
+}
+.list {
+  padding: 0 0 0 2rem;
+  margin-top: 1rem;
+  &__item {
+    font-size: 2rem;
+    list-style-type: "-  ";
+    padding: 0.2rem 0;
+  }
+// стили кнопок
+}
+.button {
+  display: block;
+  padding: 1.3rem 3.2rem;
+  background: $blue-color;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #fff;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  transition: all .6s;
+  cursor: pointer;
+  &_white {
+    background: #fff;
+    color: #000;
+    border-color: #6F6D7B;
+    &:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+  }
+  &:hover {
+    background: $blue-color;
+    box-shadow: 0 0 0.2rem 0.1rem rgba(0,0,0,.2);
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    transition: .5s;
+  }
+  &:hover::before {
+    left: 100%;
+  }
+//// секция main
+}
+.main {
+  height: 92rem;
+  background: #272733 url('../img/main.png') no-repeat center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order {
+  text-align: center;
+  width: 117rem;
+  &__title {
+    font-size: 3.6rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  &__subtitle {
+    font-size: 1.8rem;
+    color: $grey-color;
+    margin-top: 3rem;
+  }
+}
+.diagramm {
+  margin-top: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__item {
+    height: 10rem;
+    width: 10rem;
+    background: url('../img/large_round.svg') no-repeat center / contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1.4rem;
+    position: relative;
+  }
+  &__dots {
+    width: 11rem;
+    height: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__desc {
+    height: 6rem;
+    position: absolute;
+    width: 21rem;
+    bottom: -7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 1.2rem;
+    text-align: center;
+  }
+  &__text {
+    font-size: 1.6rem;
+  }
+}
+.dot {
+  height: 0.6rem;
+  width: 0.6rem;
+  background: $grey-color;
+  border-radius: 50%;
+}
+// форма заказа
+.form {
+  margin-top: 14.4rem;
+  position: relative;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem 0;
+  }
+  &__row_center {
+    justify-content: center;
+  }
+  &__input {
+    display: block;
+    padding: 1.2rem 3.5rem 1.2rem 1rem;
+    background: #fff;
+    border-radius: 0.4rem;
+    border: none;
+    font-size: 1.8rem;
+    color: #000;
+    outline: none;
+    width: 37rem;
+    height: 4.8rem;
+  }
+  &__input_hidden {
+    position: absolute;
+    left: -1000rem;
+  }
+  &_button {
+    width: 37rem;
+    height: 4.8rem;
+    margin-top: 3rem;
+  }
+  &__range {
+    width: 100%;
+    height: 0.6rem;
+    border-radius: 0.4rem;
+  }
+  &__select {
+    width: 37rem;
+  }
+  &__send {
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.8rem;
+    cursor: pointer;
+    border: 0.2rem solid $blue-color;
+    border-radius: 0.3rem;
+    background: #fff url('../img/icons/send.svg') no-repeat 24% / 1.8rem;
+    padding: 1.2rem 3.5rem 1.2rem 4.8rem;
+  }
+}
+.range {
+  display: flex;
+  flex-direction: column;
+  width: 66%;
+  &__desc {
+    display: flex;
+    justify-content: space-between;
+    height: 2.3rem;
+    font-size: 1.8rem;
+  }
+  &__line {
+    height: 2.3rem;
+    display: flex;
+    align-items: flex-end;
+  }
+//настройка стилей плагина selectize
+}
+.selectize-input.full {
+  background: #fff url('../img/icons/arrow-down.svg') no-repeat 34rem / 1rem;
+}
+.selectize-input {
+  border: none;
+  padding: 1.2rem 3.5rem 1.2rem 1rem;
+  font-size: 1.8rem;
+  display: block;
+}
+.selectize-input input {
+  color: transparent !important;
+}
+.selectize-control.single .selectize-input.input-active,
+.selectize-input {
+  background: #3D4050 url('../img/icons/arrow-top.svg') no-repeat 34rem / 1rem;
+  text-align: left;
+  display: block;
+  height: 4.8rem;
+}
+.selectize-control.single .selectize-input.input-active,
+.selectize-input.focus {
+  color: #fff;
+}
+.selectize-dropdown {
+  background: #272733;
+  color: #fff;
+  text-align: left;
+  border: 1px solid #3D4050;
+  padding: 2px;
+}
+.selectize-dropdown-content {
+  overflow-y: scroll;
+  scrollbar-color: $blue-color #3D4050;
+  scrollbar-width: thin;
+}
+.selectize-dropdown-content::-webkit-scrollbar {
+  background: #3D4050;
+  width: 8px;
+}
+.selectize-dropdown-content::-webkit-scrollbar-thumb {
+  background: $blue-color;
+  border-radius: 4px;
+}
+.selectize-dropdown-content > div:first-child {
+  display: none;
+}
+.selectize-dropdown .active {
+  background: transparent;
+  color: $blue-color;
+}
+.selectize-dropdown,
+.selectize-input,
+.selectize-input input {
+  font-size: 1.8rem;
+}
+.selectize-dropdown .optgroup-header,
+.selectize-dropdown .option {
+  padding: 1rem 0.8rem;
+}
+.selectize-control.single .selectize-input:after {
+  display: none;
+}
+.selectize-input > * {
+  line-height: 1.3;
+}
+//// footer
+.footer {
+  background: #3D4050;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.information {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: $grey-color;
+  white-space: nowrap;
+  &__row {
+    height: 2rem;
+    text-align: center;
+  }
+  &__row:not(:nth-child(2)) {
+    flex: 1;
+  }
+  &__row:not(:first-child) {
+    border-left: 0.1rem solid $grey-color;
+  }
+  &__row_white {
+    color: #fff;
+    line-height: 2rem;
+  }
+}
+.social {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 2rem;
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2rem;
+  }
+  &__pic {
+    margin-right: 1rem;
+  }
+  &__link {
+    color: #fff;
+  }
+}
+.social_short {
+  margin: 0;
+  height: 2rem;
+}
+.ttu {
+  text-transform: uppercase;
+}
+//// стили для range-инпута общие для всех браузеров
+input[type=range] {
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #FFFFFF;
+  border-radius: 5px;
+  border: 1px solid fff;
+}
+input[type=range]::-webkit-slider-thumb {
+  border: 3px solid #286690;
+  height: 26px;
+  width: 26px;
+  border-radius: 14px;
+  background: #42A9ED;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -10px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #FFFFFF;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #FFFFFF;
+  border-radius: 5px;
+  border: 1px solid fff;
+}
+input[type=range]::-moz-range-thumb {
+  border: 3px solid #286690;
+  height: 20px;
+  width: 20px;
+  border-radius: 14px;
+  background: #42A9ED;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 6px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #FFFFFF;
+  border: 1px solid fff;
+  border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+  background: #FFFFFF;
+  border: 1px solid fff;
+  border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+  margin-top: 1px;
+  border: 3px solid #286690;
+  height: 26px;
+  width: 26px;
+  border-radius: 14px;
+  background: #42A9ED;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #FFFFFF;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #FFFFFF;
+}
+
+@import "media";
